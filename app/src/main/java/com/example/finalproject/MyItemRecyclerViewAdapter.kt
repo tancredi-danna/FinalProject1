@@ -31,8 +31,7 @@ class MyItemRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        holder.itemNameTv.text = item.title
     }
 
     override fun getItemCount(): Int = values.size
@@ -41,9 +40,6 @@ class MyItemRecyclerViewAdapter(
         val itemNameTv: TextView = binding.itemName
 
 
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
     }
 
 }

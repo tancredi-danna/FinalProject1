@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.finalproject.model.FoodEntity
+import com.example.finalproject.model.FoodEntityItem
 import com.example.finalproject.network.RecipeApiService
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +21,8 @@ class RecipeViewModel :ViewModel(){
             override fun onResponse(call: Call<FoodEntity>, response: Response<FoodEntity>) {
                 if(response.isSuccessful){
                     recipe.value = response.body()
-                }else{
+                }
+                else{
                     randomDishLoadingError.value = true
                 }
             }
