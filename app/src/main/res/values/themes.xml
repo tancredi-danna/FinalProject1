@@ -13,4 +13,16 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_theme</item>
+        <item name="colorPrimary">@color/giallo_zafferano</item>
+        <item name="colorPrimaryVariant">@color/giallo_scuro</item>
+        <item name="colorOnPrimary">@color/giallo_chiaro</item>
+        <item name="colorSecondary">@color/giallo_chiaro</item>
+        <item name="colorSecondaryVariant">@color/giallo_scuro</item>
+        <item name="colorOnSecondary">@color/giallo_zafferano</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+    </style>
 </resources>
