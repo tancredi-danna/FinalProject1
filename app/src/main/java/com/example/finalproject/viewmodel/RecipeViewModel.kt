@@ -20,6 +20,8 @@ class RecipeViewModel :ViewModel(){
             override fun onResponse(call: Call<FoodEntity>, response: Response<FoodEntity>) {
                 if(response.isSuccessful){
                     recipe.value = response.body()
+                }else{
+                    randomDishLoadingError.value = true
                 }
             }
 

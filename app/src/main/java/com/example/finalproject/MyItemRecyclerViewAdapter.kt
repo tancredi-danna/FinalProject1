@@ -39,7 +39,7 @@ class MyItemRecyclerViewAdapter(
 
     inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val itemNameTv: TextView = binding.itemName
-        val contentView: TextView = binding.content
+
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"
