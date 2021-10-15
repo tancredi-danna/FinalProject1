@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.view
 
 import android.content.Intent
 import android.content.SharedPreferences

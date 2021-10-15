@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
