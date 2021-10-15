@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = LoginLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         button = binding.btnGo

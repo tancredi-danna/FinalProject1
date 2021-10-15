@@ -8,30 +8,39 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.finalproject.databinding.FragmentItemListBinding
+import com.example.finalproject.model.FoodEntity
+import com.example.finalproject.model.FoodEntityItem
+import com.example.finalproject.viewmodel.RecipeViewModel
 //import com.example.finalproject.placeholder.PlaceholderContent
 
 /**
  * A fragment representing a list of Items.
  */
 class ItemFragment : Fragment() {
+    private lateinit var mRecipeViewModel: RecipeViewModel
+    private lateinit var mBinding: FragmentItemListBinding
+    private lateinit var mAdapter: MyItemRecyclerViewAdapter
 
-    private var columnCount = 1
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+        mBinding = FragmentItemListBinding.inflate(layoutInflater)
 
         // Set the adapter
+    return mBinding.root
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = when {
@@ -44,18 +53,32 @@ class ItemFragment : Fragment() {
         return view
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
+        observeFilmItem()
+        mRecipeViewModel.getRecipeFromApi()
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            ItemFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
     }
+    //Questo è il medoto che implemente l'observer
+    private fun observeFilmItem(){
+        mRecipeViewModel.recipe.observe(viewLifecycleOwner,{ response ->
+            response?.let { responseNn->
+
+                setFilms(responseNn)
+
+            }
+
+        })
+
+    }
+
+    private fun setFilms(responseNn: FoodEntity) {
+        mBinding.rvList.layoutManager = LinearLayoutManager(context)
+        mAdapter = MyItemRecyclerViewAdapter(responseNn)
+
+
+    }
+
+
 }
