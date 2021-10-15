@@ -36,17 +36,20 @@ class ItemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+        mBinding = FragmentItemListBinding.inflate(layoutInflater)
 
         // Set the adapter
-
+    return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
+        observeFilmItem()
+        mRecipeViewModel.getRecipeFromApi()
 
     }
+    //Questo è il medoto che implemente l'observer
     private fun observeFilmItem(){
         mRecipeViewModel.recipe.observe(viewLifecycleOwner,{ response ->
             response?.let { responseNn->

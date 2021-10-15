@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        mBinding.rvMain.layoutManager = LinearLayoutManager(this)
+       //settare navigation
     }
 }
