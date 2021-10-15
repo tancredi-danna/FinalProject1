@@ -39,6 +39,8 @@ class MyItemRecyclerViewAdapter(
     inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val itemNameTv: TextView = binding.itemName
 
+        val idView: TextView = binding.itemNumber
+        val contentView: TextView = binding.
 
     }
 

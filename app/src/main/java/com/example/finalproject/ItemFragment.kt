@@ -14,6 +14,7 @@ import com.example.finalproject.databinding.FragmentItemListBinding
 import com.example.finalproject.model.FoodEntity
 import com.example.finalproject.model.FoodEntityItem
 import com.example.finalproject.viewmodel.RecipeViewModel
+//import com.example.finalproject.placeholder.PlaceholderContent
 
 /**
  * A fragment representing a list of Items.
@@ -40,6 +41,16 @@ class ItemFragment : Fragment() {
 
         // Set the adapter
     return mBinding.root
+        if (view is RecyclerView) {
+            with(view) {
+                layoutManager = when {
+                    columnCount <= 1 -> LinearLayoutManager(context)
+                    else -> GridLayoutManager(context, columnCount)
+                }
+                //adapter = MyItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
+            }
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

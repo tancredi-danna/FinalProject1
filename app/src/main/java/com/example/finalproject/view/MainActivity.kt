@@ -14,5 +14,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
 
        //settare navigation
+        mBinding.rvMain.layoutManager = LinearLayoutManager(this)
     }
 }
