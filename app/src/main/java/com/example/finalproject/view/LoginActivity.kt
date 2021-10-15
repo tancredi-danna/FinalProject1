@@ -15,7 +15,9 @@ class LoginActivity : AppCompatActivity() {
     lateinit var mail: String
     lateinit var button: Button
     lateinit var binding: LoginLayoutBinding
-    lateinit var sharedPref : SharedPreferences
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoginLayoutBinding.inflate(layoutInflater)
@@ -36,17 +38,21 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this,"email o password errata",Toast.LENGTH_LONG).show()
                 }
                 if(passwordDb != null && psd.equals(passwordDb)){
+                    logged()
                     goToMain()
-                    sharedPref.edit().putBoolean("logged",true).apply()
-                    sharedPref.edit().putString("name",mail).apply()
                 }else{
                     Toast.makeText(this,"email o password errata",Toast.LENGTH_LONG).show()
-                    sharedPref.edit().putBoolean("logged",false).apply()
                 }
             }else{
                 Toast.makeText(this,"inserisci i dati correttamente",Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun logged() {
+        val sharedPref = getPreferences(MODE_PRIVATE)
+        sharedPref.edit().putString("name",mail).commit()
+        sharedPref.edit().putBoolean("logged",true).commit()
     }
 
     private fun goToMain() {
@@ -55,4 +61,6 @@ class LoginActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+
 }

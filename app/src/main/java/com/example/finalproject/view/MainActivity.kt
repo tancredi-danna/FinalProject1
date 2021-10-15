@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-
-        mBinding.rvMain.layoutManager = LinearLayoutManager(this)
+        //mBinding.rvMain.layoutManager = LinearLayoutManager(this)
     }
 }

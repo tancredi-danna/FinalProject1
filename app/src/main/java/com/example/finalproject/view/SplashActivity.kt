@@ -8,20 +8,24 @@ import android.os.Handler
 import android.os.Looper
 
 class SplashActivity : AppCompatActivity() {
-    lateinit var sharedPref : SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         delay()
-        sharedPref = getSharedPreferences("login",MODE_PRIVATE)
-        if (sharedPref.getBoolean("logged",true)){
-            goToMain()
-        }else if(sharedPref == null || sharedPref.getBoolean("logged",false)){
-            goToLogin()
-        }
 
+        chekLogin()
 
         finish()
     }
+
+    private fun chekLogin() {
+        var sharedPref = getPreferences(MODE_PRIVATE)
+        if (sharedPref.getBoolean("logged",true)){
+            goToMain()
+        }else if(sharedPref.equals(null) || sharedPref.getBoolean("logged",false)){
+            goToLogin()
+        }
+    }
+
     fun delay(){
         Handler(Looper.getMainLooper()).postDelayed({
         }, 1000)
